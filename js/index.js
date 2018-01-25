@@ -124,7 +124,6 @@ function addEvent() {
             if (pos === "start") {
                 movex = mx;
                 //ele.style.transform="translateX(" + mx + "px)"
-
             } else if (pos === "end") {
                 movex = mx - max;
             }
