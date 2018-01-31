@@ -1,9 +1,7 @@
 var swiper = new Swiper('.swiper-container', {
-    pagination: {
-        el: '.swiper-pagination',
-        dynamicBullets: true,
-        loop: true
-    }
+    direction: 'horizontal',
+    loop: true,
+    autoplay: 5000
 });
 
 
@@ -79,7 +77,7 @@ function render() {
         }
     });
     $(".content ul").html(str);
-    saveData(data)
+    saveData(data);
     addEvent();
 }
 
@@ -99,56 +97,77 @@ function setZero(n) {
 }
 
 function addEvent() {
-    var max = $(".content ul li div").width();
+    let max = $(".content ul li div").width();
     $(".content ul li").each(function (index, ele) {
-        var sx, mx, pos = "start", movex;
-        var hammer = new Hammer(ele);
+        let sx, mx, pos = "start", movex;
+        let hammer = new Hammer(ele);
         hammer.on("panstart", function (e) {
-            $(ele).css("transtion","none");
+            $(ele).css("transition", "none");
             sx = e.center.x;
-            $(ele).siblings().transition({x:0});
+            $(ele).siblings().transition({x: 0}); //除当前元素，所有的同辈元素
         });
-
         hammer.on("panmove", function (e) {
-            var cx = e.center.x;
+            cx = e.center.x;
             mx = cx - sx;
             if (mx > 0 && pos === "start") {
                 return;
-            }
-            if (mx < 0 && pos === "end") {
+            } else if (mx < 0 && pos === "end") {
                 return;
-            }
-            if (Math.abs(mx) > max) {
+            } else if (Math.abs(mx) > max) {
                 return;
-            }
-            if (pos === "start") {
+            } else if (pos === "start") {
                 movex = mx;
-                //ele.style.transform="translateX(" + mx + "px)"
             } else if (pos === "end") {
                 movex = mx - max;
             }
-            ele.style.transform = "translateX(" + movex + "px)"
-
+            ele.style.transform = "translateX(" + movex + "px)";
         });
-
         hammer.on("panend", function () {
-            $(ele).css("transtion","all 1s");
+            $(ele).css("transition", "all 1s ease");
             if (Math.abs(movex) < max / 2) {
-                $(ele).css("x",0);
+                $(ele).css({x: 0});
                 pos = "start";
             } else {
-                $(ele).css("x",-max);
+                $(ele).css({x: -max});
                 pos = "end";
             }
-        });
-    })
+        })
+    });
 }
 
-$(".content ul")
-    .on("click",".donebtn",function(){
-        var id=$(this).parent().attr("id");
-        var data=getData();
-        data[id].isDone=true;
-        saveData(data);
-        render();
-    });
+$(".content ul").on("click", ".donebtn", function () {
+    let id = $(this).parent().attr("id");
+    let data = getData();
+    data[id].isDone = true;
+    saveData(data);
+    render();
+}).on("click", ".delbtn", function () {
+    let id = $(this).parent().attr("id");
+    let data = getData();
+    data.splice(id, 1);
+    saveData(data);
+    render();
+}).on("click", "i", function () {
+    let id = $(this).parent().attr("id");
+    let data = getData();
+    data[id].isStar = !data[id].isStar;
+    saveData(data);
+    render();
+}).on("click", "p", function () {
+    let text = $(this).text();
+    let id = $(this).parent().attr("id");
+    $(document).data("id", id);
+    $("#main").css("filter", "blur(2px)").next().addClass("active").children(".editBox").addClass("show").find("textarea").val(text);
+});
+
+$(".submit2").click(function () {
+    let id = $(document).data("id");
+    let text = $(this).prev().val();
+    let data = getData();
+    data[id].text = text;
+    let date = new Date();
+    data[id].time = date.getTime();
+    saveData(data);
+    render();
+    $(this).parent().removeClass("show").parent().removeClass("active").prev().css("filter", "none");
+});

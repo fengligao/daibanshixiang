@@ -1,16 +1,17 @@
-.swiper-slide{
+.swiper-slide {
     height: 120px;
 }
-*{
+
+* {
     margin: 0;
     padding: 0;
     list-style: none;
     box-sizing: border-box;
 }
 
-.btn-wrapper div{
+.btn-wrapper div {
     width: 50vw;
-    height:10vh;
+    height: 10vh;
     background: cornflowerblue;
     color: #ffffff;
     float: left;
@@ -18,31 +19,35 @@
     line-height: 10vh;
     font-size: 18px;
 }
-.add{
+
+.add {
     width: 100vw;
-    height:10vh;
+    height: 10vh;
     position: absolute;
-    left:0;
-    bottom:0;
+    left: 0;
+    bottom: 0;
     background: #ff9999;
     text-align: center;
     line-height: 10vh;
     color: #ffffff;
 }
-.mask{
+
+.mask {
     width: 100vw;
     height: 100vh;
-    background: rgba(0,0,0,0.5);
+    background: rgba(0, 0, 0, 0.5);
     position: absolute;
-    left:0;
-    top:0;
+    left: 0;
+    top: 0;
     z-index: 999;
     display: none;
 }
-.mask.active{
+
+.mask.active {
     display: block;
 }
-.mask .alertBox,.mask .editBox{
+
+.mask .alertBox, .mask .editBox {
     width: 80vw;
     height: 50vh;
     background: #fff;
@@ -56,10 +61,12 @@
     overflow: hidden;
     display: none;
 }
-.editBox{
+
+.editBox {
     display: none;
 }
-.alertBox textarea,.editBox textarea{
+
+.alertBox textarea, .editBox textarea {
     width: 100%;
     height: 40vh;
     resize: none;
@@ -68,10 +75,11 @@
     font-size: 40px;
 }
 
-textarea:focus{
+textarea:focus {
     outline: none;
 }
-.alertBox .submit,.editBox .submit2{
+
+.alertBox .submit, .editBox .submit2 {
     width: 100%;
     height: 10vh;
     background: #ccc;
@@ -79,43 +87,49 @@ textarea:focus{
     line-height: 10vh;
     font-size: 45px;
 }
-.plan.active{
+
+.plan.active {
     background: #ff9999;
 }
-.done.active{
+
+.done.active {
     background: #9095ff;
 }
-.close{
+
+.close {
     display: block;
-    width:10vw;
+    width: 10vw;
     height: 10vw;
     text-align: center;
     line-height: 10vw;
     color: #333333;
     position: absolute;
     right: 5vw;
-    top:5vw;
+    top: 5vw;
     font-size: 20px;
 }
+
 @keyframes show {
-    0%{
-        transform: scale(.5,.5);
+    0% {
+        transform: scale(.5, .5);
     }
-    100%{
-        transform: scale(1,1);
+    100% {
+        transform: scale(1, 1);
     }
 }
-.show{
+
+.show {
     animation: show .5s ease-in;
-    display: block!important;
+    display: block !important;
 }
-.tips{
+
+.tips {
     width: 100vw;
     height: 5vh;
     background: #ff9999;
     position: absolute;
-    left:0;
-    top:47.5vh;
+    left: 0;
+    top: 47.5vh;
     z-index: 111111;
     display: none;
     text-align: center;
@@ -123,42 +137,48 @@ textarea:focus{
     color: #ffffff;
     font-size: 16px;
 }
+
 @keyframes tipsShow {
-    0%{
+    0% {
         opacity: 0;
     }
-    50%{
+    50% {
         opacity: 1;
     }
-    100%{
+    100% {
         opacity: 1;
     }
 }
-.tipsShow{
+
+.tipsShow {
     display: block;
     animation: show .8s;
 }
-.content{
+
+.content {
     width: 100%;
     height: 55vh;
     position: relative;
     overflow: hidden;
 }
-.content li{
-    width:100%;
-    height:8vh;
+
+.content li {
+    width: 100%;
+    height: 8vh;
     background: #ffffff;
     border-bottom: 1px solid #888888;
     position: relative;
 }
-.content li p{
+
+.content li p {
     width: 70vw;
     height: 8vh;
     line-height: 8vh;
     float: left;
     font-size: 16px;
 }
-.content li time{
+
+.content li time {
     width: 20vw;
     height: 8vh;
     line-height: 8vh;
@@ -166,7 +186,8 @@ textarea:focus{
     font-size: 12px;
     color: black;
 }
-.content li i{
+
+.content li i {
     width: 10vw;
     height: 8vh;
     line-height: 8vh;
@@ -176,7 +197,11 @@ textarea:focus{
     font-size: 16px;
 }
 
-.content li div{
+.content li i.active {
+    color: red;
+}
+
+.content li div {
     width: 30vw;
     height: 8vh;
     line-height: 8vh;
